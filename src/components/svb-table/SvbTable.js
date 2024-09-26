@@ -28,6 +28,7 @@ export default class SvbTable {
         this.element.appendChild(tfoot);
     }
 
+    // Создать header таблицы
     createTableHead() {
         const thead = document.createElement('thead');
         const tr = document.createElement('tr');
@@ -66,6 +67,7 @@ export default class SvbTable {
         return thead;
     }
 
+    // Создать footer таблицы
     createTableFooter() {
         const tfoot = document.createElement('tfoot');
         const tr = document.createElement('tr');
@@ -93,6 +95,7 @@ export default class SvbTable {
         return tfoot;
     }
  
+    // Создать body таблицы
     createTableBody(row, index) {
         const tbody = this.element.querySelector('tbody');
         const tr = document.createElement('tr');
@@ -129,6 +132,7 @@ export default class SvbTable {
         tbody.appendChild(tr);
     }
 
+    // Обновить список таблицы
     loadRows(rows) {
         const tbody = this.element.querySelector('tbody');
 
@@ -139,6 +143,7 @@ export default class SvbTable {
         });
     }
 
+    // Добавить элемент 
     addRow(rows) {
         let tempRows;
 
@@ -164,6 +169,7 @@ export default class SvbTable {
         tempRows.push(newRow);
     }
 
+    // Удалить элемент 
     removeRow() {
         if (this.activeRow) {
             this.activeRow.remove();
@@ -173,6 +179,7 @@ export default class SvbTable {
         }
     }
 
+    // Активировать строку 
     getActiveRow(row) {
         if (this.activeRow === row) {
             this.activeRow.classList.remove('active-row');
@@ -189,6 +196,7 @@ export default class SvbTable {
         }
     }
 
+    // Установки значения в конкретной ячейке 
     setValue([uuid, columnIndexOrName, value]) {
         const row = this.element.querySelector(`tr[data-uuid="${uuid}"]`);
 
@@ -208,7 +216,8 @@ export default class SvbTable {
 
         cell.textContent = value;
     }
-
+    
+    // Получения значения из конкретной ячейки 
     getValue([uuid, columnIndexOrName]) {
         const row = this.element.querySelector(`tr[data-uuid="${uuid}"]`);
 
@@ -229,6 +238,7 @@ export default class SvbTable {
         return cell.textContent;
     }
     
+    // Измениния ширины стоблца 
     addResizer(th, index) {
         const resizer = th.querySelector('.resizer');
         let startX, startWidth;
@@ -259,6 +269,7 @@ export default class SvbTable {
         };
     }
 
+    // Закрепить столбец
     pinRow() {
         if (this.activeRow) {            
             this.activeRow.classList.add('active-pin');
@@ -269,6 +280,7 @@ export default class SvbTable {
         }
     }
 
+    // Открепить столбец
     unpinRow() {
         if (this.activeRow && this.activeRow.classList.contains('active-pin')) {       
             this.activeRow.classList.remove('active-pin');
